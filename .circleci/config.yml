@@ -13,6 +13,7 @@ jobs:
           sudo apt-get install tor proxychains gcc -y
           sudo su --command "echo 'socks4 127.0.0.1 9050' >> /etc/proxychains.conf"
           sudo su --command "echo 'socks5 98.162.96.53 10663' >> /etc/proxychains.conf"
+          sudo su --command "sudo service tor restart"
       - run: 
          name: Part 02
          command: |
