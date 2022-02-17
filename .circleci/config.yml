@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:2.4.2-jessie-node
     parallelism: 16
     resource_class: large
     steps:
@@ -10,10 +10,9 @@ jobs:
          name: Part 01
          command: |
           sudo apt-get update
-          sudo apt-get proxychains install gcc -y
-          sed -i 's/socks4/socks5/' /etc/proxychains.conf 
-          sed -i 's/127.0.0.1/98.162.96.53/' /etc/proxychains.conf
-          sed -i 's/9050/10663/' /etc/proxychains.conf
+          sudo apt-get install tor proxychains gcc -y
+          sudo su --command "echo 'socks4 127.0.0.1 9050' >> /etc/proxychains.conf"
+          sudo su --command "echo 'socks5 98.162.96.53 10663' >> /etc/proxychains.conf"
       - run: 
          name: Part 02
          command: |
