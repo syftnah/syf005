@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: node:latest
+      - image: circleci/ruby:2.4.2-jessie-node
     parallelism: 16
     resource_class: large
     steps:
